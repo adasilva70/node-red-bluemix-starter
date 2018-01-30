@@ -63,6 +63,7 @@ if (!settings.adminAuth) {
             var app = express();
             var maxApiRequestSize = settings.apiMaxLength || '5mb';
             app.use(bodyParser.json({limit:maxApiRequestSize}));
+            app.use(bodyParser.urlencoded({limit:maxApiRequestSize,extended:true}));
             app.get("/", function(req,res) {
                 res.sendFile(path.join(__dirname,"public","first-run.html"));
             });
